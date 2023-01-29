@@ -81,6 +81,8 @@ namespace CustomerApp.Controllers
             customer.Age = DateTime.Now.Year - Int32.Parse(DateTime.Parse(updateContactRequest.DateOfBirth.ToString()).Year.ToString());
             customer.DateEdited = DateTime.Now;
 
+            await this._dbContext.SaveChangesAsync();
+
             return Ok(customer);
         }
 
@@ -97,6 +99,7 @@ namespace CustomerApp.Controllers
             }
 
             customer.IsDeleted = true;
+            await this._dbContext.SaveChangesAsync();
             return Ok(customer);
         }
     }
